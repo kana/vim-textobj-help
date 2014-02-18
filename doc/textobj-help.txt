@@ -1,0 +1,146 @@
+*textobj-help.txt*	Text objects for Vim help documents
+
+Version 0.0.0
+Script ID: ****
+Copyright (C) 2014 Kana Natsuno <http://whileimautomaton.net/>
+License: MIT license  {{{
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be included
+    in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+    OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+    CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+    TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+    SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+}}}
+
+CONTENTS					*textobj-help-contents*
+
+Introduction            |textobj-help-introduction|
+Interface               |textobj-help-interface|
+  Key Mappings            |textobj-help-key-mappings|
+Customization           |textobj-help-customization|
+Examples                |textobj-help-examples|
+Bugs                    |textobj-help-bugs|
+Changelog               |textobj-help-changelog|
+
+
+
+
+==============================================================================
+INTRODUCTION					*textobj-help-introduction*
+
+*textobj-help* is a Vim plugin to provide text objects for |:help| documents.
+
+
+Requirements:
+- Vim 7.4 or later
+- |textobj-user| 0.5.0 or later (vimscript#2100)
+  https://github.com/kana/vim-textobj-user
+
+Latest version:
+https://github.com/kana/vim-textobj-help
+
+Document in HTML format:
+http://vim-doc.heroku.com/view?https://raw.github.com/kana/vim-textobj-help/master/doc/textobj-help.txt
+
+
+
+
+==============================================================================
+INTERFACE					*textobj-help-interface*
+
+------------------------------------------------------------------------------
+KEY MAPPINGS					*textobj-help-key-mappings*
+
+DEFAULT KEY MAPPINGS			   *textobj-help-default-key-mappings*
+
+This plugin does not define default key mappings.  You have to define key
+mappings to use help text objects.  See also |textobj-help-examples|.
+
+
+NAMED KEY MAPPINGS			     *textobj-help-named-key-mappings*
+
+The following key mappings are defined in Normal, Visual, Select and
+Operator-pending modes.
+
+<Plug>(textobj-help-link-n)			*<Plug>(textobj-help-link-n)*
+			Move the cursor to the next link.  A link is a |WORD|
+			surrounded by |bars|.
+<Plug>(textobj-help-link-p)			*<Plug>(textobj-help-link-p)*
+<Plug>(textobj-help-link-N)			*<Plug>(textobj-help-link-N)*
+<Plug>(textobj-help-link-P)			*<Plug>(textobj-help-link-P)*
+			Similar to |<Plug>(textobj-help-link-n)|, but move the
+			cursor to:
+			- The previous link.
+			- The end of the next link.
+			- The end of the previous link.
+
+<Plug>(textobj-help-option-n)		       *<Plug>(textobj-help-option-n)*
+<Plug>(textobj-help-option-p)		       *<Plug>(textobj-help-option-p)*
+<Plug>(textobj-help-option-N)		       *<Plug>(textobj-help-option-N)*
+<Plug>(textobj-help-option-P)		       *<Plug>(textobj-help-option-P)*
+			Similar to |<Plug>(textobj-help-link-n)|, but move the
+			cursor to an adjacent option.  An option is a word
+			surrounded by single quotes.  For example: 'option'
+
+<Plug>(textobj-help-any-n)			*<Plug>(textobj-help-any-n)*
+<Plug>(textobj-help-any-p)			*<Plug>(textobj-help-any-p)*
+<Plug>(textobj-help-any-N)			*<Plug>(textobj-help-any-N)*
+<Plug>(textobj-help-any-P)			*<Plug>(textobj-help-any-P)*
+			Similar to |<Plug>(textobj-help-link-n)|, but move the
+			cursor to an adjacent link or option.
+
+
+
+
+==============================================================================
+EXAMPLES					*textobj-help-examples*
+
+(A) Use J/K to move the cursor to the next/previous object while viewing
+|:help| documents.  Since |J| is the key to join lines by default, these key
+mappings are not defined when you edit help documents.
+>
+	" ~/.vim/after/ftplugin/help/textobj.vim
+	if &l:readonly
+	  call textobj#user#map('help' {
+	  \   'any': {
+	  \     'move-n': '<buffer> J',
+	  \     'move-p': '<buffer> K',
+	  \   },
+	  \ })
+	endif
+<
+
+
+
+
+==============================================================================
+BUGS						*textobj-help-bugs*
+
+- See also http://github.com/kana/vim-textobj-help/issues
+
+
+
+
+==============================================================================
+CHANGELOG					*textobj-help-changelog*
+
+0.0.0	2014-02-18T23:13:04+09:00		*textobj-help-changelog-0.0.0*
+	- Initial version, separated from my vimrc.
+
+
+
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:fen:fdl=0:fdm=marker:
