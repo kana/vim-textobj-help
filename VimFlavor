@@ -1,1 +1,1 @@
-# No dependencies.
+flavor 'kana/vim-textobj-user', '~> 0.5'
