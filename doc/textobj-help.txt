@@ -113,7 +113,7 @@ mappings are not defined when you edit help documents.
 >
 	" ~/.vim/after/ftplugin/help/textobj.vim
 	if &l:readonly
-	  call textobj#user#map('help' {
+	  call textobj#user#map('help', {
 	  \   'any': {
 	  \     'move-n': '<buffer> J',
 	  \     'move-p': '<buffer> K',
